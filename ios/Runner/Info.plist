@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+// image picker permissions
+		<!-- Camera access -->
+		<key>NSCameraUsageDescription</key>
+		<string>We need access to your camera to take photos.</string>
+
+		<!-- Photo Library access -->
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>We need access to your photo library to select images.</string>
+
+		<!-- Photo Library add/save access -->
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>We need access to save cropped images.</string>
+
+		<!-- Microphone access (if you ever record video) -->
+		<key>NSMicrophoneUsageDescription</key>
+		<string>We need access to your microphone for video recording.</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

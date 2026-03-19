@@ -1,24 +1,18 @@
+import 'package:demo_project/core/base/base_controller.dart';
+import 'package:demo_project/models/product_model.dart';
 import 'package:demo_project/routes/app_routes.dart';
+import 'package:demo_project/services/api_endpoints.dart';
+import 'package:demo_project/services/api_service.dart';
+import 'package:demo_project/services/storage_service.dart';
 import 'package:get/get.dart';
 
-import 'package:demo_project/services/api_service.dart';
-import 'package:demo_project/services/api_endpoints.dart';
-import 'package:demo_project/services/storage_service.dart';
-import 'package:demo_project/models/product_model.dart';
-
-
-class ProductsController extends GetxController {
+class ProductsController extends BaseController {
   final _api = ApiService();
 
   final products = <ProductModel>[].obs;
   int _currentPage = 1;
   final hasMore = true.obs;
-  final isLoadingMore = false.obs;
-  
-  // Base state
-  final isLoading = false.obs;
-  final errorMessage = ''.obs;
-  final hasError = false.obs;
+  final isLoadMore = false.obs;
 
   @override
   void onInit() {
@@ -31,60 +25,53 @@ class ProductsController extends GetxController {
     hasMore.value = true;
     products.clear();
 
-    try {
-      isLoading.value = true;
-      errorMessage.value = '';
-      hasError.value = false;
+    final result = await apiCall<List<ProductModel>>(
+      () async {
+        final data = await _api.get(
+          ApiEndpoints.products,
+          queryParams: {'page': _currentPage},
+        );
+        final responseData = data['data'] as Map<String, dynamic>;
+        hasMore.value = responseData['next'] != null;
+        final list = responseData['results'] as List;
+        return list
+            .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+            .toList();
+      },
+    );
 
-      final data = await _api.get(
-        ApiEndpoints.products,
-        queryParams: {'page': _currentPage},
-      );
-      final responseData = data['data'] as Map<String, dynamic>;
-      hasMore.value = responseData['next'] != null;
-      final list = responseData['results'] as List;
-      final result = list
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-
-      if (result.isNotEmpty) {
-        products.addAll(result);
-        _currentPage++;
-      }
-    } catch (e) {
-      errorMessage.value = e.toString();
-      hasError.value = true;
-    } finally {
-      isLoading.value = false;
+    if (result != null) {
+      products.addAll(result);
+      _currentPage++;
     }
   }
 
   Future<void> loadMoreProducts() async {
-    if (!hasMore.value || isLoadingMore.value) return;
-    isLoadingMore.value = true;
+    if (!hasMore.value || isLoadMore.value) return;
+    isLoadMore.value = true;
 
-    try {
-      final data = await _api.get(
-        ApiEndpoints.products,
-        queryParams: {'page': _currentPage},
-      );
-      final responseData = data['data'] as Map<String, dynamic>;
-      hasMore.value = responseData['next'] != null;
-      final list = responseData['results'] as List;
-      final result = list
-          .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+    final result = await apiCall<List<ProductModel>>(
+      () async {
+        final data = await _api.get(
+          ApiEndpoints.products,
+          queryParams: {'page': _currentPage},
+        );
+        final responseData = data['data'] as Map<String, dynamic>;
+        hasMore.value = responseData['next'] != null;
+        final list = responseData['results'] as List;
+        return list
+            .map((e) => ProductModel.fromJson(e as Map<String, dynamic>))
+            .toList();
+      },
+      showLoading: false,
+    );
 
-      if (result.isNotEmpty) {
-        products.addAll(result);
-        _currentPage++;
-      }
-    } catch (e) {
-      errorMessage.value = e.toString();
-      hasError.value = true;
-    } finally {
-      isLoadingMore.value = false;
+    if (result != null) {
+      products.addAll(result);
+      _currentPage++;
     }
+
+    isLoadMore.value = false;
   }
 
   Future<void> refreshProducts() => loadProducts();

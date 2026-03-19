@@ -1,8 +1,9 @@
+import 'package:demo_project/views/screens/profile/profile_page.dart';
 import 'package:get/get.dart';
 
 import 'package:demo_project/controllers/products_controller.dart';
-import 'package:demo_project/views/screens/login_page.dart';
-import 'package:demo_project/views/screens/products_page.dart';
+import 'package:demo_project/views/screens/auth/login_page.dart';
+import 'package:demo_project/views/screens/products/products_page.dart';
 import 'package:demo_project/routes/app_routes.dart';
 import 'package:demo_project/routes/auth_middleware.dart';
 
@@ -25,5 +26,11 @@ class AppPages {
       },
       middlewares: [AuthMiddleware()],
     ),
+
+    GetPage(
+      name: AppRoutes.profile, 
+      page: () => const ProfilePage(),
+      middlewares: [AuthMiddleware()],
+    )
   ];
 }

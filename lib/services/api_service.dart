@@ -1,15 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:http/http.dart' as http;
-
 import 'package:demo_project/core/config/environment.dart';
 import 'package:demo_project/core/constants/app_constants.dart';
+import 'package:demo_project/core/utils/logger.dart';
 import 'package:demo_project/services/api_exception.dart';
 import 'package:demo_project/services/connectivity_service.dart';
 import 'package:demo_project/services/storage_service.dart';
-import 'package:demo_project/core/utils/logger.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
+import 'package:mime/mime.dart';
+import 'package:http_parser/http_parser.dart';
+
+
 
 class ApiService {
   static final ApiService _instance = ApiService._internal();
@@ -24,6 +27,16 @@ class ApiService {
     final headers = <String, String>{
       'Content-Type': 'application/json',
     };
+    final token = _storage.getToken();
+    if (token != null && token.isNotEmpty) {
+      headers['Authorization'] = 'Bearer $token';
+    }
+    return headers;
+  }
+
+  // Multipart এ Content-Type দেওয়া যাবে না — http নিজেই set করে
+  Map<String, String> get _authHeader {
+    final headers = <String, String>{};
     final token = _storage.getToken();
     if (token != null && token.isNotEmpty) {
       headers['Authorization'] = 'Bearer $token';
@@ -59,6 +72,7 @@ class ApiService {
     dynamic body,
     Map<String, String>? extraHeaders,
   }) async {
+    debugPrint("POST Request to ${_buildUri(endpoint)} with body: ${jsonEncode(body)} and headers: ${{..._headers, ...?extraHeaders}}");
     return _request(
       () => _client.post(
         _buildUri(endpoint),
@@ -108,24 +122,87 @@ class ApiService {
     );
   }
 
+
+Future<dynamic> multipart(
+  String method,
+  String endpoint, {
+  Map<String, String> fields = const {},
+  Map<String, File> files = const {},
+}) async {
+  if (!await _connectivity.hasConnection) {
+    throw ApiException.noInternet();
+  }
+  try {
+    final request = http.MultipartRequest(method, _buildUri(endpoint));
+    // Add headers
+    request.headers.addAll(_authHeader);
+
+    // Add normal fields
+    request.fields.addAll(fields);
+
+    // Add files (image, PDF, etc.)
+    for (final entry in files.entries) {
+      final file = entry.value;
+
+      if (!file.existsSync()) {
+        throw ApiException(message: "${entry.key} file not found");
+      }
+
+      // Detect mime type dynamically
+      final mimeType = lookupMimeType(file.path)?.split('/');
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          entry.key,
+          file.path,
+          contentType: mimeType != null
+              ? MediaType(mimeType[0], mimeType[1])
+              : MediaType('application', 'octet-stream'), // fallback
+        ),
+      );
+    }
+    // Send request
+    final streamed = await request.send().timeout(
+      Duration(seconds: AppConstants.connectTimeout),
+    );
+    final response = await http.Response.fromStream(streamed); 
+    // Log network
+    AppLogger.network(
+      '=======> MULTIPART $method ${request.url} → ${response.statusCode}\n${response.body}',
+    );
+    return _processResponse(response);
+  } on TimeoutException {
+    throw ApiException.timeout();
+  } on SocketException {
+    throw ApiException(message: 'Could not connect to server');
+  } on ApiException {
+    rethrow;
+  } catch (e) {
+    AppLogger.error('Multipart error', error: e);
+    throw ApiException.unknown(e);
+  }
+}
+
+
+
+
   Future<dynamic> _request(
     Future<http.Response> Function() request,
   ) async {
     if (!await _connectivity.hasConnection) {
       throw ApiException.noInternet();
     }
+
     try {
       final response = await request().timeout(
         Duration(seconds: AppConstants.connectTimeout),
       );
 
-      AppLogger.network('=======> Method: ${response.request?.method} \n url : ${response.request?.url} \n  -----> status Code ${response.statusCode} \n ========> ${response.body} ');
+      AppLogger.network('=======>  Method: ${response.request?.method} URL: ${response.request?.url} Status: ${response.statusCode} Body: ${response.body}');
 
       return _processResponse(response);
     } on TimeoutException {
       throw ApiException.timeout();
     } on SocketException {
-      AppLogger.error('Socket error', error: request);
       throw ApiException(message: 'Could not connect to server');
     } on ApiException {
       rethrow;
@@ -136,12 +213,23 @@ class ApiService {
   }
 
   dynamic _processResponse(http.Response response) {
-    final body = response.body.isNotEmpty ? jsonDecode(response.body) : null;
+  dynamic body;
 
-    if (response.statusCode >= 200 && response.statusCode < 300) {
+  try {
+    body = response.body.isNotEmpty
+        ? jsonDecode(response.body)
+        : {};
+  } catch (e) {
+    throw ApiException(message: "Invalid JSON response");
+  }
+
+  if (response.statusCode >= 200 && response.statusCode < 300) {
+    if (body is Map<String, dynamic> || body is List) {
       return body;
     }
-
-    throw ApiException.fromStatusCode(response.statusCode, body);
+    throw ApiException(message: "Unexpected response format");
   }
+
+  throw ApiException.fromStatusCode(response.statusCode, body);
+}
 }
