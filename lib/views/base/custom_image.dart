@@ -50,20 +50,20 @@ class CustomImage extends StatelessWidget {
               placeholderBuilder: (_) => _shimmerPlaceholder(),
             )
           : _isFile
-              ? SvgPicture.file(
-                  File(path),
-                  width: width,
-                  height: height,
-                  fit: fit,
-                  colorFilter: colorFilter,
-                )
-              : SvgPicture.asset(
-                  path,
-                  width: width,
-                  height: height,
-                  fit: fit,
-                  colorFilter: colorFilter,
-                );
+          ? SvgPicture.file(
+              File(path),
+              width: width,
+              height: height,
+              fit: fit,
+              colorFilter: colorFilter,
+            )
+          : SvgPicture.asset(
+              path,
+              width: width,
+              height: height,
+              fit: fit,
+              colorFilter: colorFilter,
+            );
     } else {
       // Raster image handling
       imageWidget = _isNetwork
@@ -89,20 +89,20 @@ class CustomImage extends StatelessWidget {
               errorWidget: (context, url, error) => _errorWidget(),
             )
           : _isFile
-              ? Image.file(
-                  File(path),
-                  width: width,
-                  height: height,
-                  fit: fit,
-                  errorBuilder: (_, _, ___) => _errorWidget(),
-                )
-              : Image.asset(
-                  path,
-                  width: width,
-                  height: height,
-                  fit: fit,
-                  errorBuilder: (_, __, ___) => _errorWidget(),
-                );
+          ? Image.file(
+              File(path),
+              width: width,
+              height: height,
+              fit: fit,
+              errorBuilder: (_, _, _) => _errorWidget(),
+            )
+          : Image.asset(
+              path,
+              width: width,
+              height: height,
+              fit: fit,
+              errorBuilder: (_, _, _) => _errorWidget(),
+            );
     }
 
     return ClipRRect(
@@ -115,14 +115,14 @@ class CustomImage extends StatelessWidget {
 
   Widget _shimmerPlaceholder() {
     return Shimmer.fromColors(
-      baseColor: Colors.grey.withOpacity(0.6),
-      highlightColor: Colors.grey.withOpacity(0.3),
+      baseColor: Colors.grey.withValues(alpha: 0.6),
+      highlightColor: Colors.grey.withValues(alpha: 0.3),
       child: Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
           border: border,
-          color: backgroundColor ?? Colors.grey.withOpacity(0.6),
+          color: backgroundColor ?? Colors.grey.withValues(alpha: 0.6),
           borderRadius: borderRadius,
           shape: boxShape,
         ),
@@ -136,7 +136,7 @@ class CustomImage extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         border: border,
-        color: backgroundColor ?? Colors.grey.withOpacity(0.6),
+        color: backgroundColor ?? Colors.grey.withValues(alpha: 0.6),
         borderRadius: borderRadius,
         shape: boxShape,
       ),

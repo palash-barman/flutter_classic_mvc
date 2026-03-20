@@ -60,7 +60,10 @@ class _ProfilePictureState extends State<ProfilePicture> {
       behavior: HitTestBehavior.translucent,
       onTap: () async {
         if (!widget.isEditable) return;
-        File? pickedImage = await customImagePicker( isCircular: true,isSquared:false);
+        File? pickedImage = await customImagePicker(
+          isCircular: true,
+          isSquared: false,
+        );
         if (pickedImage != null && widget.onImagePicked != null) {
           widget.onImagePicked!(pickedImage);
         }
@@ -76,20 +79,25 @@ class _ProfilePictureState extends State<ProfilePicture> {
               color: Colors.grey[300],
               shape: BoxShape.circle,
               border: Border.all(
-                  color: widget.borderColor, width: widget.borderWidth),
+                color: widget.borderColor,
+                width: widget.borderWidth,
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
               ],
             ),
             child: CustomImage(
-              path: _currentFile?.path ?? _currentUrl ?? widget.placeholderAsset,
+              path:
+                  _currentFile?.path ?? _currentUrl ?? widget.placeholderAsset,
               width: widget.size,
               height: widget.size,
-              boxShape: widget.isCircular ? BoxShape.circle : BoxShape.rectangle,
+              boxShape: widget.isCircular
+                  ? BoxShape.circle
+                  : BoxShape.rectangle,
               backgroundColor: Colors.grey[300],
             ),
           ),

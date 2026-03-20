@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: [
               Theme.of(context).primaryColor,
-              Theme.of(context).primaryColor.withOpacity(0.7),
+              Theme.of(context).primaryColor.withValues(alpha: 0.7),
             ],
           ),
         ),
@@ -39,7 +39,7 @@ class SplashPage extends StatelessWidget {
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withValues(alpha: 0.2),
                       blurRadius: 20,
                       offset: const Offset(0, 10),
                     ),
@@ -60,9 +60,9 @@ class SplashPage extends StatelessWidget {
             Text(
               'Demo Project',
               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 10),
 
@@ -70,8 +70,8 @@ class SplashPage extends StatelessWidget {
             Text(
               'Your Shopping Companion',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Colors.white70,
-                    fontSize: 16,
+                color: Colors.white70,
+                fontSize: 16,
               ),
             ),
             const SizedBox(height: 60),
@@ -79,7 +79,7 @@ class SplashPage extends StatelessWidget {
             // Loading Indicator
             CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(
-                Colors.white.withOpacity(0.8),
+                Colors.white.withValues(alpha: 0.8),
               ),
               strokeWidth: 3,
             ),
