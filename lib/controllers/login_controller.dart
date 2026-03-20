@@ -41,7 +41,7 @@ class LoginController extends BaseController {
         );
         return LoginResponse.fromJson(data as Map<String, dynamic>);
       },
-      showOverlay: true,
+      showOverlay: false,
     );
 
     if (result != null) {

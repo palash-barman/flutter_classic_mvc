@@ -3,9 +3,6 @@ import 'package:intl/intl.dart';
 
 class Formatter {
 
-   /// -------------------------------
-  /// TIME & DATE FORMATTERS
-  /// -------------------------------
 
   static String timeFormatter({TimeOfDay? time, DateTime? dateTime, bool showDate = false}) {
     time ??= dateTime != null ? TimeOfDay.fromDateTime(dateTime) : null;
@@ -32,6 +29,7 @@ class Formatter {
         "July", "August", "September", "October", "November", "December"
       ][month];
 
+
   static String countdown(Duration duration) =>
       "${duration.inMinutes.toString().padLeft(2,'0')}:${(duration.inSeconds % 60).toString().padLeft(2,'0')}";
 
@@ -49,18 +47,14 @@ class Formatter {
 
     return result.trim();
   }
-  /// -------------------------------
-  /// TEXT FORMATTERS
-  /// -------------------------------
+
   /// TEXT
   static String toPascalCase(String text) =>
       text.split(' ').map((w) => w.isEmpty ? w : "${w[0].toUpperCase()}${w.substring(1).toLowerCase()}").join(' ');
 
   static String capitalize(String text) => text.isEmpty ? text : "${text[0].toUpperCase()}${text.substring(1)}";
 
-    /// -------------------------------
-  /// NUMBER & CURRENCY FORMATTERS
-  /// -------------------------------
+    
 
   /// General number formatter (round to 2 decimals, remove trailing zeros)
   static String numberFormatter(dynamic value) {
@@ -76,9 +70,6 @@ class Formatter {
   static String percentage(num value, {int decimalDigits = 2}) =>
       NumberFormat("##0.${'0' * decimalDigits}%").format(value / 100);
 
-  /// -------------------------------
-  /// FILE & SIZE FORMATTERS
-  /// -------------------------------
   /// FILE SIZE
   static String fileSizeFormatter(int bytes) {
     if (bytes <= 0) return "0 B";
@@ -88,9 +79,7 @@ class Formatter {
     while (size >= 1024 && i < suffix.length - 1) { size /= 1024; i++; }
     return "${size.toStringAsFixed(2)} ${suffix[i]}";
   }
- /// -------------------------------
-  /// SPECIAL FORMATTERS
-  /// -------------------------------
+
 
   /// Phone number formatter (basic)
   static String phoneFormatter(String phone, {String countryCode = "+1"}) {

@@ -1,4 +1,5 @@
 import 'package:demo_project/views/screens/profile/profile_page.dart';
+import 'package:demo_project/views/screens/splash/splash_page.dart';
 import 'package:get/get.dart';
 
 import 'package:demo_project/controllers/products_controller.dart';
@@ -10,9 +11,14 @@ import 'package:demo_project/routes/auth_middleware.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = AppRoutes.login;
+  static const initial = AppRoutes.splash;
 
   static final pages = <GetPage>[ 
+    GetPage(
+      name: AppRoutes.splash,
+      page: () => const SplashPage(),
+    ),
+
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginPage(),

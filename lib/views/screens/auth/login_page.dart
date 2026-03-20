@@ -1,3 +1,5 @@
+import 'package:demo_project/views/base/custom_button.dart';
+import 'package:demo_project/views/base/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:demo_project/core/localization/language_selection.dart';
@@ -12,17 +14,16 @@ class LoginPage extends StatelessWidget {
     final controller = Get.put(LoginController());
     final themeController = Get.find<ThemeController>();
 
-
     return Scaffold(
       appBar: AppBar(
         title: Text('login'.tr),
         actions: [
           IconButton(
-            icon: Obx(() => Icon(
-                  themeController.isDarkMode
-                      ? Icons.light_mode
-                      : Icons.dark_mode,
-                )),
+            icon: Obx(
+              () => Icon(
+                themeController.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+              ),
+            ),
             onPressed: themeController.toggleTheme,
           ),
           IconButton(
@@ -57,33 +58,22 @@ class LoginPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 48),
-                TextFormField(
+
+                CustomTextField(
                   controller: controller.emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: controller.validateEmail,
-                  decoration: InputDecoration(
-                    labelText: 'email'.tr,
-                    prefixIcon: const Icon(Icons.email_outlined),
-                  ),
+                  labelText: 'email'.tr,
+                  isEmail: true,
+                  prefixIcon: const Icon(Icons.email_outlined),
                 ),
                 const SizedBox(height: 16),
-                Obx(() => TextFormField(
-                      controller: controller.passwordController,
-                      obscureText: controller.obscurePassword.value,
-                      validator: controller.validatePassword,
-                      decoration: InputDecoration(
-                        labelText: 'password'.tr,
-                        prefixIcon: const Icon(Icons.lock_outlined),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            controller.obscurePassword.value
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                          ),
-                          onPressed: controller.togglePasswordVisibility,
-                        ),
-                      ),
-                    )),
+
+                CustomTextField(
+                  controller: controller.passwordController,
+                  labelText: 'password'.tr,
+                  isPassword: true,
+                  prefixIcon: const Icon(Icons.lock_outlined),
+                ),
+
                 const SizedBox(height: 8),
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
@@ -93,18 +83,18 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-                Obx(() => ElevatedButton(
-                  onPressed: controller.isLoading.value
-                      ? null
-                      : controller.login,
-                  child: controller.isLoading.value
-                      ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                      : Text('login'.tr),
-                )),
+                Obx(
+                  () => CustomButton(
+                    onTap: () {
+                      if (controller.formKey.currentState!.validate()) {
+                        controller.login();
+                      }
+                    },
+                    text: "login".tr,
+                    loading: controller.isLoading.value,
+                    type: ButtonType.filled,
+                  ),
+                ),
                 const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +102,10 @@ class LoginPage extends StatelessWidget {
                     Text('dont_have_account'.tr),
                     TextButton(
                       onPressed: () {},
-                      child: Text('register'.tr,style: const TextStyle(color: Colors.green),),
+                      child: Text(
+                        'register'.tr,
+                        style: const TextStyle(color: Colors.green),
+                      ),
                     ),
                   ],
                 ),

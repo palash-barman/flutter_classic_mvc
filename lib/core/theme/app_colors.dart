@@ -4,9 +4,9 @@ class AppColors {
   AppColors._();
 
   // Primary
-  static const Color primary = Color(0xFF1976D2);
-  static const Color primaryLight = Color(0xFF63A4FF);
-  static const Color primaryDark = Color(0xFF004BA0);
+  static const Color primary = Color.fromARGB(255, 133, 15, 230);
+  static const Color primaryLight = Color.fromARGB(255, 137, 113, 243);
+  static const Color primaryDark = Color.fromARGB(255, 6, 40, 80);
 
   // Secondary
   static const Color secondary = Color(0xFF26A69A);
