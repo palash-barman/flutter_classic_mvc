@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import 'package:demo_project/core/error/error_handler.dart';
-import 'package:demo_project/core/global/loading_controller.dart';
-import 'package:demo_project/services/api_exception.dart';
-import 'package:demo_project/services/storage_service.dart';
-import 'package:demo_project/routes/app_routes.dart';
+import 'package:flutter_classic_mvc/core/error/error_handler.dart';
+import 'package:flutter_classic_mvc/core/global/loading_controller.dart';
+import 'package:flutter_classic_mvc/services/api_exception.dart';
+import 'package:flutter_classic_mvc/services/storage_service.dart';
+import 'package:flutter_classic_mvc/routes/app_routes.dart';
 
 abstract class BaseController extends GetxController {
   final isLoading = false.obs;

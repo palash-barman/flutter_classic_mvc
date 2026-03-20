@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:demo_project/services/storage_service.dart';
+import 'package:flutter_classic_mvc/services/storage_service.dart';
 
 class ThemeController extends GetxController {
   final _storage = StorageService();

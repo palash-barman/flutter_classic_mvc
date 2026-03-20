@@ -1,8 +1,8 @@
-import 'package:demo_project/views/base/custom_image.dart';
+import 'package:flutter_classic_mvc/views/base/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:demo_project/models/product_model.dart';
+import 'package:flutter_classic_mvc/models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel product;

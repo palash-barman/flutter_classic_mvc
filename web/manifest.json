@@ -1,6 +1,6 @@
 {
-    "name": "demo_project",
-    "short_name": "demo_project",
+    "name": "flutter_classic_mvc",
+    "short_name": "flutter_classic_mvc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

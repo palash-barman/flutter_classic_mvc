@@ -1,8 +1,9 @@
 import 'dart:io';
-import 'package:demo_project/core/theme/app_colors.dart';
+import 'package:flutter_classic_mvc/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+
 
 Future<File?> customImagePicker({
   bool isCircular = true,
@@ -36,10 +37,13 @@ Future<File?> customImagePicker({
           toolbarColor: AppColors.primary,
           toolbarWidgetColor: Colors.white,
           backgroundColor: AppColors.primary,
+          cropStyle: isCircular ? CropStyle.circle : CropStyle.rectangle,
           hideBottomControls: !isSquared,
+          initAspectRatio: CropAspectRatioPreset.square,
         ),
         IOSUiSettings(
           title: 'Crop your image',
+          cropStyle: isCircular ? CropStyle.circle : CropStyle.rectangle,
           aspectRatioLockEnabled: isSquared,
         ),
       ],

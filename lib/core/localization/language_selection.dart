@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:demo_project/core/localization/localization_controller.dart';
+import 'package:flutter_classic_mvc/core/localization/localization_controller.dart';
 
 class LanguageSelectionDialog extends StatelessWidget {
   const LanguageSelectionDialog({super.key});

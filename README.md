@@ -1,4 +1,4 @@
-# ?? Demo Project — Production-Ready Flutter MVC Architecture
+# ?? Demo Project ï¿½ Production-Ready Flutter MVC Architecture
 
 <div align="center">
 
@@ -10,7 +10,7 @@
 
 **Scalable, maintainable Flutter boilerplate for 300+ projects & 300+ developers**
 
-[Quick Start](#quick-start) • [Architecture](#architecture) • [Features](#features) • [Project Structure](#project-structure) • [Contributing](#contributing) • [Documentation](#documentation)
+[Quick Start](#quick-start) ï¿½ [Architecture](#architecture) ï¿½ [Features](#features) ï¿½ [Project Structure](#project-structure) ï¿½ [Contributing](#contributing) ï¿½ [Documentation](#documentation)
 
 </div>
 
@@ -18,12 +18,12 @@
 
 ## ? Why This Project?
 
-? **Production Ready** — Battle-tested MVC pattern with GetX  
-? **Scalable** — Supports 300+ parallel projects, 30-60 day sprints  
-? **Zero Code Issues** — `flutter analyze` passes with 0 issues  
-? **Developer Friendly** — Simple, flat structure without over-engineering  
-? **Well Documented** — ARCHITECTURE.md, SETUP.md, CONTRIBUTING.md included  
-? **Rapid Development** — Pre-built utilities, helpers, and patterns  
+? **Production Ready** ï¿½ Battle-tested MVC pattern with GetX  
+? **Scalable** ï¿½ Supports 300+ parallel projects, 30-60 day sprints  
+? **Zero Code Issues** ï¿½ `flutter analyze` passes with 0 issues  
+? **Developer Friendly** ï¿½ Simple, flat structure without over-engineering  
+? **Well Documented** ï¿½ ARCHITECTURE.md, SETUP.md, CONTRIBUTING.md included  
+? **Rapid Development** ï¿½ Pre-built utilities, helpers, and patterns  
 
 ---
 
@@ -40,7 +40,7 @@ dart --version           # 3.0.0 or higher
 ```bash
 # 1. Clone repository
 git clone <repository-url>
-cd demo_project
+cd flutter_classic_mvc
 
 # 2. Get dependencies
 flutter pub get
@@ -70,22 +70,22 @@ flutter build apk
 ```
 Request Flow:
 +-------------+
-¦   UI View   ¦  ? User interaction (tap, input)
+ï¿½   UI View   ï¿½  ? User interaction (tap, input)
 +-------------+
-       ¦
+       ï¿½
        ?
 +----------------------+
-¦ Controller (GetX)    ¦  ? Business logic, state management
+ï¿½ Controller (GetX)    ï¿½  ? Business logic, state management
 +----------------------+
-       ¦
+       ï¿½
        ?
 +----------------------+
-¦ Services             ¦  ? API calls, storage, connectivity
+ï¿½ Services             ï¿½  ? API calls, storage, connectivity
 +----------------------+
-       ¦
+       ï¿½
        ?
 +----------------------+
-¦ Models               ¦  ? Data classes, serialization
+ï¿½ Models               ï¿½  ? Data classes, serialization
 +----------------------+
 ```
 
@@ -105,73 +105,73 @@ Request Flow:
 ```
 lib/
 +-- main.dart                          # App entry point (GetMaterialApp config)
-¦
+ï¿½
 +-- controllers/                       # Business logic & state management
-¦   +-- login_controller.dart          # Authentication logic  
-¦   +-- products_controller.dart       # Product list with pagination
-¦
+ï¿½   +-- login_controller.dart          # Authentication logic  
+ï¿½   +-- products_controller.dart       # Product list with pagination
+ï¿½
 +-- models/                            # Data classes & DTOs
-¦   +-- login_response.dart            # Auth response wrapper
-¦   +-- product_model.dart             # Product entity
-¦   +-- login_request.dart             # Login request DTO
-¦
+ï¿½   +-- login_response.dart            # Auth response wrapper
+ï¿½   +-- product_model.dart             # Product entity
+ï¿½   +-- login_request.dart             # Login request DTO
+ï¿½
 +-- views/                             # UI Pages (Screens)
-¦   +-- login_page.dart                # Login form with validation
-¦   +-- products_page.dart             # Product list with infinite scroll
-¦
+ï¿½   +-- login_page.dart                # Login form with validation
+ï¿½   +-- products_page.dart             # Product list with infinite scroll
+ï¿½
 +-- widgets/                           # Reusable UI components
-¦   +-- loading_widget.dart            # Centered progress indicator
-¦   +-- error_widget.dart              # Error screen with retry
-¦   +-- empty_widget.dart              # Empty state display
-¦   +-- no_internet_widget.dart        # Offline state display
-¦   +-- product_card.dart              # Product list item
-¦
+ï¿½   +-- loading_widget.dart            # Centered progress indicator
+ï¿½   +-- error_widget.dart              # Error screen with retry
+ï¿½   +-- empty_widget.dart              # Empty state display
+ï¿½   +-- no_internet_widget.dart        # Offline state display
+ï¿½   +-- product_card.dart              # Product list item
+ï¿½
 +-- services/                          # External dependencies & APIs
-¦   +-- api_service.dart               # HTTP client (singleton)
-¦   +-- api_endpoints.dart             # Endpoint constants
-¦   +-- api_exception.dart             # Custom exception class
-¦   +-- connectivity_service.dart      # Network status detection
-¦   +-- storage_service.dart           # SharedPreferences wrapper
-¦
+ï¿½   +-- api_service.dart               # HTTP client (singleton)
+ï¿½   +-- api_endpoints.dart             # Endpoint constants
+ï¿½   +-- api_exception.dart             # Custom exception class
+ï¿½   +-- connectivity_service.dart      # Network status detection
+ï¿½   +-- storage_service.dart           # SharedPreferences wrapper
+ï¿½
 +-- routes/                            # Navigation & routing
-¦   +-- app_routes.dart                # Named route constants
-¦   +-- app_pages.dart                 # GetPage configuration
-¦   +-- auth_middleware.dart           # Route guards
-¦
+ï¿½   +-- app_routes.dart                # Named route constants
+ï¿½   +-- app_pages.dart                 # GetPage configuration
+ï¿½   +-- auth_middleware.dart           # Route guards
+ï¿½
 +-- core/                              # Shared utilities & configuration
     +-- config/
-    ¦   +-- environment.dart           # Environment settings (dev/prod)
-    ¦
+    ï¿½   +-- environment.dart           # Environment settings (dev/prod)
+    ï¿½
     +-- constants/
-    ¦   +-- app_constants.dart         # App-wide constants
-    ¦
+    ï¿½   +-- app_constants.dart         # App-wide constants
+    ï¿½
     +-- theme/
-    ¦   +-- app_theme.dart             # Material theme definitions
-    ¦   +-- app_colors.dart            # Color palette
-    ¦   +-- theme_controller.dart      # Dark/light mode toggle
-    ¦
+    ï¿½   +-- app_theme.dart             # Material theme definitions
+    ï¿½   +-- app_colors.dart            # Color palette
+    ï¿½   +-- theme_controller.dart      # Dark/light mode toggle
+    ï¿½
     +-- localization/
-    ¦   +-- app_translations.dart      # Language strings
-    ¦   +-- localization_controller.dart
-    ¦   +-- languages/
-    ¦       +-- en_us.dart             # English translations
-    ¦       +-- ar_sa.dart             # Arabic translations
-    ¦       +-- es_es.dart             # Spanish translations
-    ¦       +-- fr_fr.dart             # French translations
-    ¦
+    ï¿½   +-- app_translations.dart      # Language strings
+    ï¿½   +-- localization_controller.dart
+    ï¿½   +-- languages/
+    ï¿½       +-- en_us.dart             # English translations
+    ï¿½       +-- ar_sa.dart             # Arabic translations
+    ï¿½       +-- es_es.dart             # Spanish translations
+    ï¿½       +-- fr_fr.dart             # French translations
+    ï¿½
     +-- global/
-    ¦   +-- global_bindings.dart       # GetX initial bindings
-    ¦   +-- loading_controller.dart    # Global loading state
-    ¦   +-- loading_overlay.dart       # App-wide loading widget
-    ¦
+    ï¿½   +-- global_bindings.dart       # GetX initial bindings
+    ï¿½   +-- loading_controller.dart    # Global loading state
+    ï¿½   +-- loading_overlay.dart       # App-wide loading widget
+    ï¿½
     +-- utils/
-    ¦   +-- logger.dart                # Debug logging utility
-    ¦   +-- responsive.dart            # Responsive design helpers
-    ¦   +-- app_validator.dart         # Input validation methods
-    ¦
+    ï¿½   +-- logger.dart                # Debug logging utility
+    ï¿½   +-- responsive.dart            # Responsive design helpers
+    ï¿½   +-- app_validator.dart         # Input validation methods
+    ï¿½
     +-- error/
-    ¦   +-- error_handler.dart         # Error display utility
-    ¦
+    ï¿½   +-- error_handler.dart         # Error display utility
+    ï¿½
     +-- base/
         +-- base_controller.dart       # Base controller with utilities
 ```
@@ -417,10 +417,20 @@ Get.toNamed(AppRoutes.users);
 
 ## ?? Documentation
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** — Deep dive into MVC pattern & examples
-- **[SETUP.md](SETUP.md)** — Installation, environment config, troubleshooting
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Coding guidelines, naming conventions, patterns
-- **[AUDIT_REPORT.md](AUDIT_REPORT.md)** — Production readiness verification
+**Complete documentation organized by topic:**
+
+ðŸ‘‰ **[Start here: README_DOCS.md](README_DOCS.md)** - Navigation hub with role-based learning paths
+
+### Quick Links
+- **Getting Started:** [QUICK_START.md](docs/QUICK_START.md) | [SETUP.md](SETUP.md)
+- **Architecture:** [ARCHITECTURE.md](ARCHITECTURE.md) | [PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)
+- **Core Concepts:** [CORE_CONCEPTS.md](docs/CORE_CONCEPTS.md) | [API_GUIDE.md](docs/API_GUIDE.md)
+- **UI & State:** [WIDGETS_GUIDE.md](docs/WIDGETS_GUIDE.md) | [STATE_MANAGEMENT.md](docs/STATE_MANAGEMENT.md)
+- **Development:** [ADD_FEATURES.md](docs/ADD_FEATURES.md) | [CODE_EXAMPLES.md](docs/CODE_EXAMPLES.md) | [PATTERNS.md](docs/PATTERNS.md)
+- **Quality:** [BEST_PRACTICES.md](docs/BEST_PRACTICES.md) | [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) | [TESTING.md](docs/TESTING.md)
+- **Release:** [BUILD_DEPLOYMENT.md](docs/BUILD_DEPLOYMENT.md)
+
+**14 organized documentation files** covering everything from setup to production deployment.
 
 ---
 
@@ -467,12 +477,12 @@ flutter pub upgrade                   # Upgrade packages
 
 ## ?? Security Best Practices
 
-1. **Never commit tokens** — Use environment files (.env)
-2. **Validate inputs** — Always validate user input
-3. **Use HTTPS** — Always use encrypted connections
-4. **Secure storage** — Use platform-specific secure storage for sensitive data
-5. **Token refresh** — Implement automatic token refresh on 401
-6. **Error messages** — Don't expose internal errors to users
+1. **Never commit tokens** ï¿½ Use environment files (.env)
+2. **Validate inputs** ï¿½ Always validate user input
+3. **Use HTTPS** ï¿½ Always use encrypted connections
+4. **Secure storage** ï¿½ Use platform-specific secure storage for sensitive data
+5. **Token refresh** ï¿½ Implement automatic token refresh on 401
+6. **Error messages** ï¿½ Don't expose internal errors to users
 
 ---
 

@@ -1,10 +1,10 @@
-import 'package:demo_project/routes/app_routes.dart';
+import 'package:flutter_classic_mvc/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:demo_project/controllers/products_controller.dart';
-import 'package:demo_project/views/base/product_card.dart';
-import 'package:demo_project/views/base/app_list_view.dart'; // 👈 তোমার reusable widget
+import 'package:flutter_classic_mvc/controllers/products_controller.dart';
+import 'package:flutter_classic_mvc/views/base/product_card.dart';
+import 'package:flutter_classic_mvc/views/base/app_list_view.dart'; // 👈 তোমার reusable widget
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});

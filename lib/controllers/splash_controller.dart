@@ -1,5 +1,5 @@
-import 'package:demo_project/routes/app_routes.dart';
-import 'package:demo_project/services/storage_service.dart';
+import 'package:flutter_classic_mvc/routes/app_routes.dart';
+import 'package:flutter_classic_mvc/services/storage_service.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -10,7 +10,7 @@ class SplashController extends GetxController {
     super.onInit();
     _navigateToNextScreen();
   }
-  
+
 
   /// Check if user is logged in and navigate accordingly
   Future<void> _navigateToNextScreen() async {

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +12,7 @@ class CustomImage extends StatelessWidget {
   final BorderRadius? borderRadius;
   final BoxShape boxShape;
   final Color? backgroundColor;
-  final Widget? child; 
+  final Widget? child;
   final ColorFilter? colorFilter;
   final BoxFit fit;
 
@@ -31,12 +32,14 @@ class CustomImage extends StatelessWidget {
 
   bool get _isSvg => path.toLowerCase().endsWith('.svg');
   bool get _isNetwork => path.startsWith('http');
+  bool get _isFile => File(path).existsSync();
 
   @override
   Widget build(BuildContext context) {
     Widget imageWidget;
 
     if (_isSvg) {
+      // SVG handling
       imageWidget = _isNetwork
           ? SvgPicture.network(
               path,
@@ -46,14 +49,23 @@ class CustomImage extends StatelessWidget {
               colorFilter: colorFilter,
               placeholderBuilder: (_) => _shimmerPlaceholder(),
             )
-          : SvgPicture.asset(
-              path,
-              width: width,
-              height: height,
-              fit: fit,
-              colorFilter: colorFilter,
-            );
+          : _isFile
+              ? SvgPicture.file(
+                  File(path),
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  colorFilter: colorFilter,
+                )
+              : SvgPicture.asset(
+                  path,
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  colorFilter: colorFilter,
+                );
     } else {
+      // Raster image handling
       imageWidget = _isNetwork
           ? CachedNetworkImage(
               imageUrl: path,
@@ -76,13 +88,21 @@ class CustomImage extends StatelessWidget {
               placeholder: (context, url) => _shimmerPlaceholder(),
               errorWidget: (context, url, error) => _errorWidget(),
             )
-          : Image.asset(
-              path,
-              width: width,
-              height: height,
-              fit: fit,
-              errorBuilder: (_, __, ___) => _errorWidget(),
-            );
+          : _isFile
+              ? Image.file(
+                  File(path),
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  errorBuilder: (_, _, ___) => _errorWidget(),
+                )
+              : Image.asset(
+                  path,
+                  width: width,
+                  height: height,
+                  fit: fit,
+                  errorBuilder: (_, __, ___) => _errorWidget(),
+                );
     }
 
     return ClipRRect(

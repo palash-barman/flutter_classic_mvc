@@ -1,10 +1,10 @@
-import 'package:demo_project/views/base/custom_button.dart';
-import 'package:demo_project/views/base/custom_text_field.dart';
+import 'package:flutter_classic_mvc/views/base/custom_button.dart';
+import 'package:flutter_classic_mvc/views/base/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:demo_project/core/localization/language_selection.dart';
-import 'package:demo_project/core/theme/theme_controller.dart';
-import 'package:demo_project/controllers/login_controller.dart';
+import 'package:flutter_classic_mvc/core/localization/language_selection.dart';
+import 'package:flutter_classic_mvc/core/theme/theme_controller.dart';
+import 'package:flutter_classic_mvc/controllers/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

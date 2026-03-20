@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:demo_project/core/config/environment.dart';
-import 'package:demo_project/core/global/global_bindings.dart';
-import 'package:demo_project/core/global/loading_overlay.dart';
-import 'package:demo_project/core/localization/app_translations.dart';
-import 'package:demo_project/core/localization/localization_controller.dart';
-import 'package:demo_project/services/storage_service.dart';
-import 'package:demo_project/core/theme/app_theme.dart';
-import 'package:demo_project/core/theme/theme_controller.dart';
-import 'package:demo_project/routes/app_pages.dart';
+import 'package:flutter_classic_mvc/core/config/environment.dart';
+import 'package:flutter_classic_mvc/core/global/global_bindings.dart';
+import 'package:flutter_classic_mvc/core/global/loading_overlay.dart';
+import 'package:flutter_classic_mvc/core/localization/app_translations.dart';
+import 'package:flutter_classic_mvc/core/localization/localization_controller.dart';
+import 'package:flutter_classic_mvc/services/storage_service.dart';
+import 'package:flutter_classic_mvc/core/theme/app_theme.dart';
+import 'package:flutter_classic_mvc/core/theme/theme_controller.dart';
+import 'package:flutter_classic_mvc/routes/app_pages.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

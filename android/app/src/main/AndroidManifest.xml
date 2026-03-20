@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.demo_project">
+    package="com.example.flutter_classic_mvc">
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
 
     <application
-        android:label="demo_project"
+        android:label="flutter_classic_mvc"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

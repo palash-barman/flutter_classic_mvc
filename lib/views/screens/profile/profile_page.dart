@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:demo_project/views/base/profile_picture.dart';
+import 'package:flutter_classic_mvc/views/base/profile_picture.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -33,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onImagePicked: (file) {
                   setState(() {
                     selectedImage = file;
+                    debugPrint("Selected image path: ${file.path}");
                   });
                 },
               ),

@@ -1,10 +1,10 @@
-import 'package:demo_project/core/base/base_controller.dart';
-import 'package:demo_project/core/utils/app_validator.dart';
-import 'package:demo_project/models/login_response.dart';
-import 'package:demo_project/routes/app_routes.dart';
-import 'package:demo_project/services/api_endpoints.dart';
-import 'package:demo_project/services/api_service.dart';
-import 'package:demo_project/services/storage_service.dart';
+import 'package:flutter_classic_mvc/core/base/base_controller.dart';
+import 'package:flutter_classic_mvc/core/utils/app_validator.dart';
+import 'package:flutter_classic_mvc/models/login_response.dart';
+import 'package:flutter_classic_mvc/routes/app_routes.dart';
+import 'package:flutter_classic_mvc/services/api_endpoints.dart';
+import 'package:flutter_classic_mvc/services/api_service.dart';
+import 'package:flutter_classic_mvc/services/storage_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 

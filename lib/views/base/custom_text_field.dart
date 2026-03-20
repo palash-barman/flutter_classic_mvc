@@ -1,4 +1,4 @@
-import 'package:demo_project/core/utils/app_validator.dart';
+import 'package:flutter_classic_mvc/core/utils/app_validator.dart';
 import 'package:flutter/material.dart';
 // Email & Password regex
 

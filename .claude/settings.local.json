@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd C:\\\\Users\\\\Betopia\\\\StudioProjects\\\\demo_project:*)",
+      "Bash(cd C:\\\\Users\\\\Betopia\\\\StudioProjects\\\\flutter_classic_mvc:*)",
       "Bash(flutter analyze:*)"
     ]
   }

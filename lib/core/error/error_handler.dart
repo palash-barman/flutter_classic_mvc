@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:demo_project/services/api_exception.dart';
+import 'package:flutter_classic_mvc/services/api_exception.dart';
 
 class ErrorHandler {
   ErrorHandler._();

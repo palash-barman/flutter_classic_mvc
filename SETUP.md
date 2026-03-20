@@ -30,8 +30,8 @@ Complete setup instructions for **Classic MVC Flutter Project** for new develope
 
 ### **Step 1: Clone Repository**
 ```bash
-git clone https://github.com/your-org/demo_project.git
-cd demo_project
+git clone https://github.com/your-org/flutter_classic_mvc.git
+cd flutter_classic_mvc
 ```
 
 ### **Step 2: Get Flutter Dependencies**

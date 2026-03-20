@@ -1,6 +1,6 @@
 import 'dart:developer' as dev;
 
-import 'package:demo_project/core/config/environment.dart';
+import 'package:flutter_classic_mvc/core/config/environment.dart';
 
 class AppLogger {
   AppLogger._();

@@ -51,9 +51,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 // 4. Local project imports
-import 'package:demo_project/services/api_service.dart';
-import 'package:demo_project/models/feature_model.dart';
-import 'package:demo_project/routes/app_routes.dart';
+import 'package:flutter_classic_mvc/services/api_service.dart';
+import 'package:flutter_classic_mvc/models/feature_model.dart';
+import 'package:flutter_classic_mvc/routes/app_routes.dart';
 ```
 
 ---

@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:demo_project/core/config/environment.dart';
-import 'package:demo_project/core/constants/app_constants.dart';
-import 'package:demo_project/core/utils/logger.dart';
-import 'package:demo_project/services/api_exception.dart';
-import 'package:demo_project/services/connectivity_service.dart';
-import 'package:demo_project/services/storage_service.dart';
+import 'package:flutter_classic_mvc/core/config/environment.dart';
+import 'package:flutter_classic_mvc/core/constants/app_constants.dart';
+import 'package:flutter_classic_mvc/core/utils/logger.dart';
+import 'package:flutter_classic_mvc/services/api_exception.dart';
+import 'package:flutter_classic_mvc/services/connectivity_service.dart';
+import 'package:flutter_classic_mvc/services/storage_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:mime/mime.dart';

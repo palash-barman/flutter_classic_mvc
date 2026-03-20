@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:demo_project/views/base/empty_widget.dart';
-import 'package:demo_project/views/base/error_widget.dart';
-import 'package:demo_project/views/base/loading_widget.dart';
+import 'package:flutter_classic_mvc/views/base/empty_widget.dart';
+import 'package:flutter_classic_mvc/views/base/error_widget.dart';
+import 'package:flutter_classic_mvc/views/base/loading_widget.dart';
 
 class AppListView<T> extends StatefulWidget {
   final List<T> items;

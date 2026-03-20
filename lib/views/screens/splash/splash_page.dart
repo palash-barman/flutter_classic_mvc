@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:demo_project/controllers/splash_controller.dart';
+import 'package:flutter_classic_mvc/controllers/splash_controller.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SplashController());
+    final _ = Get.put(SplashController());
 
     return Scaffold(
       body: Container(

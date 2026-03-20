@@ -1,12 +1,12 @@
-import 'package:demo_project/views/screens/profile/profile_page.dart';
-import 'package:demo_project/views/screens/splash/splash_page.dart';
+import 'package:flutter_classic_mvc/views/screens/profile/profile_page.dart';
+import 'package:flutter_classic_mvc/views/screens/splash/splash_page.dart';
 import 'package:get/get.dart';
 
-import 'package:demo_project/controllers/products_controller.dart';
-import 'package:demo_project/views/screens/auth/login_page.dart';
-import 'package:demo_project/views/screens/products/products_page.dart';
-import 'package:demo_project/routes/app_routes.dart';
-import 'package:demo_project/routes/auth_middleware.dart';
+import 'package:flutter_classic_mvc/controllers/products_controller.dart';
+import 'package:flutter_classic_mvc/views/screens/auth/login_page.dart';
+import 'package:flutter_classic_mvc/views/screens/products/products_page.dart';
+import 'package:flutter_classic_mvc/routes/app_routes.dart';
+import 'package:flutter_classic_mvc/routes/auth_middleware.dart';
 
 class AppPages {
   AppPages._();
